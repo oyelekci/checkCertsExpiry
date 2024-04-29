@@ -16,7 +16,13 @@ import (
 	"k8s.io/client-go/tools/clientcmd"
 )
 
-var namespace = "default"
+/*
+	Usage:
+	Switch to my-namespace, then run:
+	NAMESPACE="my-namespace" go run main.go
+*/
+
+var namespace = os.Getenv("NAMESPACE")
 var containerName = "nginx"
 var certPath = "/etc/ssl/certs/tls.crt"
 
