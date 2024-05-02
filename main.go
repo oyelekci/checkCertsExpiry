@@ -16,15 +16,9 @@ import (
 	"k8s.io/client-go/tools/clientcmd"
 )
 
-/*
-	Usage:
-	Switch to my-namespace, then run:
-	NAMESPACE="my-namespace" go run main.go
-*/
-
 var namespace = os.Getenv("NAMESPACE")
-var containerName = "nginx"
-var certPath = "/etc/ssl/certs/tls.crt"
+var certPath = os.Getenv("CERTPATH")
+var containerName = os.Getenv("CONTAINERNAME")
 
 func getPods(clientset *kubernetes.Clientset) (*v1.PodList, error) {
 	podList, err := clientset.CoreV1().Pods(namespace).List(context.TODO(), metav1.ListOptions{})
